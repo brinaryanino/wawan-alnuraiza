@@ -1,26 +1,74 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg-primary: #FAF9F4;
+  --bg-secondary: #F4F2E9;
+  --primary-olive: #697447;
+  --dark-olive: #4F5938;
+  --antique-gold: #B7A66B;
+  --soft-sage: #AEB69A;
+  --text-primary: #555345;
+  --text-secondary: #898775;
+  --border-gold: rgba(183, 166, 107, 0.35);
+  --white: #FFFFFF;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@theme {
+  --color-ivory: var(--bg-primary);
+  --color-ivory-warm: var(--bg-secondary);
+  --color-olive: var(--primary-olive);
+  --color-olive-dark: var(--dark-olive);
+  --color-gold: var(--antique-gold);
+  --color-sage: var(--soft-sage);
+  --color-charcoal: var(--text-primary);
+  --color-muted: var(--text-secondary);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-serif: var(--font-cormorant), Georgia, serif;
+  --font-script: var(--font-great-vibes), cursive;
+  --font-sans: var(--font-montserrat), sans-serif;
+  --font-arabic: var(--font-amiri), "Traditional Arabic", serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-montserrat), sans-serif;
+  overflow-x: hidden;
+  selection-background-color: #B7A66B;
+  selection-color: #ffffff;
+}
+
+/* Custom delicate scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF9F4;
+}
+::-webkit-scrollbar-thumb {
+  background: #B7A66B;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #697447;
+}
+
+/* Botanical texture subtle overlay */
+.paper-texture {
+  background-color: #FAF9F4;
+  background-image: radial-gradient(rgba(183, 166, 107, 0.08) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* Foil gold text effect */
+.gold-shimmer {
+  background: linear-gradient(135deg, #998342 0%, #B7A66B 35%, #e8dc9e 50%, #B7A66B 65%, #887435 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Ornamental vintage frame borders */
+.ornament-frame-inner {
+  border: 1px solid rgba(183, 166, 107, 0.4);
+  box-shadow: inset 0 0 0 3px rgba(250, 249, 244, 0.9), inset 0 0 0 4px rgba(183, 166, 107, 0.25);
 }
