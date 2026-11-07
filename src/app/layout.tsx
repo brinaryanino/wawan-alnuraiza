@@ -34,6 +34,11 @@ const amiri = Amiri({
 export const metadata: Metadata = {
   title: weddingConfig.meta.title,
   description: weddingConfig.meta.description,
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+  },
 };
 
 export const viewport: Viewport = {
