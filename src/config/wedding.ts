@@ -88,7 +88,7 @@ export const weddingConfig: WeddingConfig = {
     enabled: true,
     // Local romantic royal classical wedding soundtrack
     src: "/audio/wedding-song2.mp3",
-    title: "Romantic Wedding Melody",
+    title: "Masa Ini, Nanti, dan Masa Indah Lainnya - Nuca",
   },
 };
 

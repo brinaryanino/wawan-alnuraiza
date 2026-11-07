@@ -73,9 +73,9 @@ export function RSVP({ initialGuestName = "" }: RSVPProps) {
     setIsSubmitting(true);
 
     try {
-      // If endpoint is configured, forward submission to backend (Google Apps Script / Webhook)
-      if (rsvp.endpoint && rsvp.endpoint.trim() !== "") {
-        const response = await fetch(rsvp.endpoint, {
+      // Send to internal Next.js API route to bypass CORS issues on Vercel
+      if (rsvp.enabled) {
+        const response = await fetch("/api/rsvp", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
