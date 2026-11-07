@@ -70,7 +70,7 @@ export function OpeningCover({ isOpen, onOpen, guestName }: OpeningCoverProps) {
               />
             </motion.div>
 
-            {/* Guest invitation note and Open button */}
+            {/* Guest invitation card and Open button */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -83,16 +83,28 @@ export function OpeningCover({ isOpen, onOpen, guestName }: OpeningCoverProps) {
                 </p>
               )}
 
-              {guestName && (
-                <div className="bg-[#FAF9F4]/80 backdrop-blur-sm px-4 py-2 rounded-lg border border-[#B7A66B]/30 max-w-xs mx-auto">
-                  <span className="text-[11px] text-[#898775] block uppercase tracking-wider">
-                    Kepada Yth. Bapak/Ibu/Saudara/i:
-                  </span>
-                  <p className="text-sm font-semibold text-[#4F5938] tracking-wide mt-0.5">
-                    {guestName}
+              {/* Luxury Personalized Guest Card */}
+              <div className="relative mx-auto max-w-[310px] sm:max-w-xs rounded-xl bg-[#FAF9F4]/90 backdrop-blur-md p-3.5 sm:p-4 border border-[#B7A66B]/50 shadow-[0_4px_20px_rgba(183,166,107,0.15)] text-center">
+                {/* Inner subtle vintage dashed border */}
+                <div className="absolute inset-1 rounded-lg border border-dashed border-[#B7A66B]/30 pointer-events-none" />
+
+                <span className="text-[10px] sm:text-[11px] text-[#697447] uppercase tracking-[0.22em] font-medium block">
+                  Kepada Yth.
+                </span>
+                <span className="text-[11px] text-[#898775] block tracking-wide mt-0.5">
+                  Bapak/Ibu/Saudara/i
+                </span>
+
+                <div className="my-1.5 py-0.5 border-y border-[#B7A66B]/25">
+                  <p className="font-[family-name:var(--font-cormorant)] text-lg sm:text-xl font-semibold text-[#4F5938] tracking-wide line-clamp-2 px-1">
+                    {guestName ? guestName : "Tamu Undangan"}
                   </p>
                 </div>
-              )}
+
+                <span className="text-[10px] text-[#898775] italic tracking-wider block font-light">
+                  di Tempat
+                </span>
+              </div>
 
               {/* Elegant Buka Undangan Button */}
               <div className="pt-2">

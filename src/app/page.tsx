@@ -29,9 +29,13 @@ export default function Home() {
   useEffect(() => {
     if (typeof window !== "undefined") {
       const params = new URLSearchParams(window.location.search);
-      const to = params.get("to") || params.get("u") || params.get("guest");
+      const to = params.get("to") || params.get("u") || params.get("guest") || params.get("kepada");
       if (to) {
-        setGuestName(decodeURIComponent(to));
+        // Replace underscores with spaces if any, and clean whitespace
+        const formatted = decodeURIComponent(to).replace(/_/g, " ").trim();
+        if (formatted) {
+          setGuestName(formatted);
+        }
       }
     }
   }, []);
@@ -72,7 +76,7 @@ export default function Home() {
         <WeddingEvents />
         <Location />
         <WeddingGift />
-        <RSVP />
+        <RSVP initialGuestName={guestName} />
         <Closing />
 
         {/* Floating Music Control */}

@@ -15,15 +15,29 @@ interface WishItem {
   timestamp: string;
 }
 
-export function RSVP() {
+interface RSVPProps {
+  initialGuestName?: string;
+}
+
+export function RSVP({ initialGuestName = "" }: RSVPProps) {
   const { rsvp } = weddingConfig;
 
   const [formData, setFormData] = useState({
-    name: "",
+    name: initialGuestName,
     attendance: "hadir",
     guests: "1",
     message: "",
   });
+
+  // Keep form in sync if initialGuestName loads later from URL
+  React.useEffect(() => {
+    if (initialGuestName) {
+      setFormData((prev) => ({
+        ...prev,
+        name: prev.name ? prev.name : initialGuestName,
+      }));
+    }
+  }, [initialGuestName]);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
