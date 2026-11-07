@@ -81,7 +81,7 @@ export const weddingConfig: WeddingConfig = {
   rsvp: {
     enabled: true,
     // Provide Google Apps Script Web App URL or API endpoint here
-    endpoint: "",
+    endpoint: "https://script.google.com/macros/s/AKfycbyFnQ_sPpTzbEzQNvVGFmS1SMiLYF6C7SHrmM3pincEUESLoobWP5IYUGm3e_HyyNHE/exec",
   },
 
   music: {
