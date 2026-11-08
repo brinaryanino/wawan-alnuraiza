@@ -1,6 +1,35 @@
 import { NextResponse } from "next/server";
 import { weddingConfig } from "@/config/wedding";
 
+export async function GET() {
+  try {
+    const endpoint = weddingConfig.rsvp.endpoint;
+
+    if (!endpoint) {
+      return NextResponse.json({ wishes: [] });
+    }
+
+    const response = await fetch(endpoint, {
+      method: "GET",
+      headers: {
+        "Accept": "application/json",
+      },
+      cache: "no-store",
+      redirect: "follow",
+    });
+
+    if (!response.ok) {
+      return NextResponse.json({ wishes: [] });
+    }
+
+    const data = await response.json();
+    return NextResponse.json(data);
+  } catch (error) {
+    console.error("Gagal mengambil ucapan dari Google Apps Script:", error);
+    return NextResponse.json({ wishes: [] });
+  }
+}
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();

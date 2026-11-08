@@ -10,7 +10,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 interface WishItem {
   name: string;
   attendance: "hadir" | "tidak_hadir";
-  guests: string;
+  guests?: string;
   message: string;
   timestamp: string;
 }
@@ -29,6 +29,33 @@ export function RSVP({ initialGuestName = "" }: RSVPProps) {
     message: "",
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [wishes, setWishes] = useState<WishItem[]>([]);
+  const [isLoadingWishes, setIsLoadingWishes] = useState(true);
+
+  // Fetch real wishes from Google Apps Script via internal API
+  const fetchWishes = React.useCallback(async () => {
+    try {
+      const res = await fetch("/api/rsvp", { cache: "no-store" });
+      if (res.ok) {
+        const data = await res.json();
+        if (Array.isArray(data.wishes)) {
+          setWishes(data.wishes);
+        }
+      }
+    } catch (err) {
+      console.warn("Gagal memuat daftar ucapan:", err);
+    } finally {
+      setIsLoadingWishes(false);
+    }
+  }, []);
+
+  React.useEffect(() => {
+    fetchWishes();
+  }, [fetchWishes]);
+
   // Keep form in sync if initialGuestName loads later from URL
   React.useEffect(() => {
     if (initialGuestName) {
@@ -38,19 +65,6 @@ export function RSVP({ initialGuestName = "" }: RSVPProps) {
       }));
     }
   }, [initialGuestName]);
-
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
-  const [wishes, setWishes] = useState<WishItem[]>([
-    {
-      name: "Sahabat & Keluarga",
-      attendance: "hadir",
-      guests: "2",
-      message: "Barakallahu lakuma wa baraka 'alaikuma wa jama'a bainakuma fii khoir. Selamat menempuh hidup baru Wawan & Alnuraiza!",
-      timestamp: "Baru saja",
-    },
-  ]);
 
   if (!rsvp.enabled) {
     return null;
@@ -280,16 +294,23 @@ export function RSVP({ initialGuestName = "" }: RSVPProps) {
         </form>
 
         {/* Wishes List */}
-        {wishes.length > 0 && (
-          <div className="mt-8 pt-6 border-t border-[#B7A66B]/25">
-            <div className="flex items-center gap-2 mb-4 text-[#4F5938]">
+        <div className="mt-8 pt-6 border-t border-[#B7A66B]/25">
+          <div className="flex items-center justify-between mb-4 text-[#4F5938]">
+            <div className="flex items-center gap-2">
               <HeartHandshake className="w-4 h-4 text-[#697447]" />
               <h4 className="text-xs uppercase tracking-wider font-semibold">
                 Ucapan Doa ({wishes.length})
               </h4>
             </div>
+            {isLoadingWishes && (
+              <span className="text-[10px] text-[#898775] animate-pulse">
+                Memuat pesan...
+              </span>
+            )}
+          </div>
 
-            <div className="max-h-64 overflow-y-auto space-y-3 pr-1 text-left">
+          {wishes.length > 0 ? (
+            <div className="max-h-72 overflow-y-auto space-y-3 pr-1 text-left">
               {wishes.map((item, i) => (
                 <div
                   key={i}
@@ -316,8 +337,12 @@ export function RSVP({ initialGuestName = "" }: RSVPProps) {
                 </div>
               ))}
             </div>
-          </div>
-        )}
+          ) : !isLoadingWishes ? (
+            <div className="py-6 text-center text-xs text-[#898775] italic">
+              Belum ada ucapan doa. Jadilah yang pertama memberikan doa restu!
+            </div>
+          ) : null}
+        </div>
       </motion.div>
     </section>
   );
