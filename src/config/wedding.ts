@@ -30,35 +30,45 @@ export const weddingConfig: WeddingConfig = {
   },
 
   event: {
-    // If the event date is confirmed, provide ISO format "YYYY-MM-DDTHH:mm:ss+07:00", otherwise null.
-    // Setting to null hides countdown & invalid dates gracefully according to master prompt.
-    date: null,
-    dateDisplay: null,
+    // Target date for countdown (Akad: 13 November 2026 16:00 WITA / UTC+8)
+    date: "2026-11-13T16:00:00+08:00",
+    dateDisplay: "13 & 14 November 2026",
     akad: {
       title: "Akad Nikah",
-      date: null,
-      startTime: "",
-      endTime: "",
-      venue: "",
-      address: "",
-      mapsUrl: "",
+      date: "Jumat, 13 November 2026",
+      startTime: "16.00 WITA",
+      endTime: "Selesai",
+      venue: "Kediaman Mempelai Wanita",
+      address: "Dusun Teliah, Desa Sakra Selatan, Sakra, Lombok Timur",
+      mapsUrl: "https://maps.app.goo.gl/Q149n11Tc5BaRMPy5",
     },
-    reception: {
-      title: "Resepsi Pernikahan",
-      date: null,
-      startTime: "",
-      endTime: "",
-      venue: "",
-      address: "",
-      mapsUrl: "",
-    },
+    items: [
+      {
+        title: "Akad Nikah",
+        date: "Jumat, 13 November 2026",
+        startTime: "16.00 WITA",
+        endTime: "Selesai",
+        venue: "Kediaman Mempelai Wanita",
+        address: "Dusun Teliah, Desa Sakra Selatan, Sakra, Lombok Timur",
+        mapsUrl: "https://maps.app.goo.gl/Q149n11Tc5BaRMPy5",
+      },
+      {
+        title: "Nyongkolan",
+        date: "Sabtu, 14 November 2026",
+        startTime: "16.00 WITA",
+        endTime: "Selesai",
+        venue: "Kediaman Mempelai Wanita",
+        address: "Dusun Teliah, Desa Sakra Selatan, Sakra, Lombok Timur",
+        mapsUrl: "https://maps.app.goo.gl/Q149n11Tc5BaRMPy5",
+      },
+    ],
   },
 
   location: {
-    venueName: "",
-    address: "",
-    mapsUrl: "",
-    embedMapUrl: "",
+    venueName: "Kediaman Mempelai Wanita",
+    address: "Dusun Teliah, Desa Sakra Selatan, Sakra, Lombok Timur",
+    mapsUrl: "https://maps.app.goo.gl/Q149n11Tc5BaRMPy5",
+    embedMapUrl: "https://www.google.com/maps?q=-8.675625,116.480069&hl=id&z=15&output=embed",
   },
 
   gift: {
@@ -66,14 +76,9 @@ export const weddingConfig: WeddingConfig = {
     note: "Doa restu Anda merupakan karunia yang sangat berarti bagi kami. Dan jika memberi adalah ungkapan kasih, Anda dapat memberikan tanda kasih melalui:",
     accounts: [
       {
-        bankName: "BCA",
-        accountHolder: "Wawan Satriawan",
-        accountNumber: "8735281920",
-      },
-      {
         bankName: "Bank Mandiri",
-        accountHolder: "B. Alnuraiza Haslinda",
-        accountNumber: "1310018274619",
+        accountHolder: "B ALNURAIZA HASLINDA",
+        accountNumber: "1610010942543",
       },
     ],
   },

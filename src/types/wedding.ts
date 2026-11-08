@@ -43,10 +43,11 @@ export interface WeddingConfig {
     translation: string;
   };
   event: {
-    date: string | null; // ISO string e.g. "2026-11-20T08:00:00+07:00" or null
+    date: string | null; // ISO string e.g. "2026-11-20T08:00:00+08:00" or null
     dateDisplay: string | null; // e.g. "20 November 2026"
+    items?: EventDetail[];
     akad: EventDetail;
-    reception: EventDetail;
+    reception?: EventDetail;
   };
   location: {
     venueName: string;
