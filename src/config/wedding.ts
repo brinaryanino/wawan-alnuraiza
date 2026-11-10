@@ -48,7 +48,7 @@ export const weddingConfig: WeddingConfig = {
         date: "Jumat, 13 November 2026",
         startTime: "16.00 WITA",
         endTime: "Selesai",
-        venue: "Kediaman Mempelai Wanita",
+        venue: "Kediaman Mempelai Pria",
         address: "Dusun Teliah, Desa Sakra Selatan, Sakra, Lombok Timur",
         mapsUrl: "https://maps.app.goo.gl/Q149n11Tc5BaRMPy5",
       },
